@@ -260,6 +260,7 @@ private void translateCurrentBrailleCell() {
     updateFormFields(targetCellText, cellText, translation);
     clearBrailleCells();
     updateBraillePanelIfNeeded();
+    checkLastCharacterAndUnselect(translation);
 }
 
 /**
