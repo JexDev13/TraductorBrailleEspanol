@@ -66,7 +66,9 @@ public class JFTranslator extends javax.swing.JFrame {
         setTranslationMode(false);
         this.JPBrailleMenu.setVisible(false);
         this.jTALenEntrada.setLineWrap(true);
+        this.jTALenEntrada.setWrapStyleWord(true);
         this.jTLenSalida.setLineWrap(true);
+        this.jTLenSalida.setWrapStyleWord(true);
         this.jSeparator3.setVisible(false);
         addKeyListener(new KeyAdapter() {
             @Override
@@ -552,13 +554,13 @@ public class JFTranslator extends javax.swing.JFrame {
         jPSpanishEntrance = new javax.swing.JPanel();
         jBMic = new javax.swing.JButton();
         jBSpeakerIn = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jTALenEntrada = new javax.swing.JTextArea();
         jPLenSalida = new javax.swing.JPanel();
         jLLenSalida = new javax.swing.JLabel();
         jPSpanishOut = new javax.swing.JPanel();
         jBSpeakerOut = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jTLenSalida = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1123,25 +1125,14 @@ public class JFTranslator extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(650, 540));
-
         jTALenEntrada.setColumns(20);
         jTALenEntrada.setRows(5);
-        jTALenEntrada.setWrapStyleWord(true);
-        jTALenEntrada.setMinimumSize(new java.awt.Dimension(235, 85));
-        jTALenEntrada.setPreferredSize(new java.awt.Dimension(235, 85));
-        jTALenEntrada.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTALenEntradaFocusGained(evt);
-            }
-        });
         jTALenEntrada.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTALenEntradaKeyReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(jTALenEntrada);
+        jScrollPane3.setViewportView(jTALenEntrada);
 
         javax.swing.GroupLayout jPLenEntradaLayout = new javax.swing.GroupLayout(jPLenEntrada);
         jPLenEntrada.setLayout(jPLenEntradaLayout);
@@ -1150,11 +1141,12 @@ public class JFTranslator extends javax.swing.JFrame {
             .addGroup(jPLenEntradaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPLenEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
                     .addGroup(jPLenEntradaLayout.createSequentialGroup()
                         .addComponent(jLLenEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPSpanishEntrance, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPSpanishEntrance, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPLenEntradaLayout.setVerticalGroup(
@@ -1164,8 +1156,8 @@ public class JFTranslator extends javax.swing.JFrame {
                 .addGroup(jPLenEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPSpanishEntrance, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                     .addComponent(jLLenEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1205,16 +1197,11 @@ public class JFTranslator extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(640, 540));
-
         jTLenSalida.setEditable(false);
         jTLenSalida.setBackground(new java.awt.Color(255, 255, 255));
         jTLenSalida.setColumns(20);
         jTLenSalida.setRows(5);
-        jTLenSalida.setMinimumSize(new java.awt.Dimension(235, 85));
-        jTLenSalida.setPreferredSize(new java.awt.Dimension(235, 85));
-        jScrollPane2.setViewportView(jTLenSalida);
+        jScrollPane1.setViewportView(jTLenSalida);
 
         javax.swing.GroupLayout jPLenSalidaLayout = new javax.swing.GroupLayout(jPLenSalida);
         jPLenSalida.setLayout(jPLenSalidaLayout);
@@ -1222,13 +1209,14 @@ public class JFTranslator extends javax.swing.JFrame {
             jPLenSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPLenSalidaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPLenSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPLenSalidaLayout.createSequentialGroup()
-                        .addComponent(jLLenSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPSpanishOut, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLLenSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPSpanishOut, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPLenSalidaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPLenSalidaLayout.setVerticalGroup(
             jPLenSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1238,7 +1226,7 @@ public class JFTranslator extends javax.swing.JFrame {
                     .addComponent(jLLenSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPSpanishOut, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1305,12 +1293,6 @@ public class JFTranslator extends javax.swing.JFrame {
         resetFormattingOptions();
     }//GEN-LAST:event_jBIntercambioActionPerformed
 
-    private void jTALenEntradaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTALenEntradaFocusGained
-        if (!getTranslationMode()) {
-            requestFocusInWindow();
-        }
-    }//GEN-LAST:event_jTALenEntradaFocusGained
-
     private void jCBMayusculasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBMayusculasItemStateChanged
         requestFocusInWindow();
         if (jCBMayusculas.isSelected()) {
@@ -1370,10 +1352,6 @@ public class JFTranslator extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jBMicActionPerformed
 
-    private void jTALenEntradaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTALenEntradaKeyReleased
-        translateText();
-    }//GEN-LAST:event_jTALenEntradaKeyReleased
-
     private void jBImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImprimirActionPerformed
         // TODO add your handling code here:
         if (jTLenSalida.getText().isBlank()) {
@@ -1414,6 +1392,10 @@ public class JFTranslator extends javax.swing.JFrame {
         textFormat.setFontSize(fontSize);
         textFormat.applyConditionalFormatting(jTALenEntrada, jTLenSalida);
     }//GEN-LAST:event_jComboBoxTamañoLetraActionPerformed
+
+    private void jTALenEntradaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTALenEntradaKeyReleased
+        translateText();
+    }//GEN-LAST:event_jTALenEntradaKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPBrailleMenu;
@@ -1456,7 +1438,7 @@ public class JFTranslator extends javax.swing.JFrame {
     private javax.swing.JPanel jPTraduccion;
     private javax.swing.JPanel jPTraductor;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
