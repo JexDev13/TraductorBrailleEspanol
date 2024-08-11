@@ -11,8 +11,11 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -31,6 +34,7 @@ public class JFTranslator extends javax.swing.JFrame {
 
     private boolean flag = true;
     private VoiceService voiceListener;
+    private int speaker = 0;
 
     private int x;
     private int y;
@@ -507,6 +511,10 @@ public class JFTranslator extends javax.swing.JFrame {
      */
     private void speaker(String talkback) {
         voiceListener.speak(talkback);
+    }
+
+    private void stopSpeaker() {
+        voiceListener.stopSpeaking();
     }
 
     @SuppressWarnings("unchecked")
@@ -1326,28 +1334,52 @@ public class JFTranslator extends javax.swing.JFrame {
 
     private void jBSpeakerInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSpeakerInActionPerformed
         String talkback = this.jTALenEntrada.getText();
-        speaker(talkback);
+        if (!voiceListener.isSpeaking()) {
+            this.jBSpeakerIn.setIcon(new ImageIcon(getClass().getResource("/img/pause32.png")));
+            speaker(talkback);
+        } else {
+            this.jBSpeakerIn.setIcon(new ImageIcon(getClass().getResource("/img/speaker32.png")));
+            stopSpeaker();
+        }
     }//GEN-LAST:event_jBSpeakerInActionPerformed
 
     private void jBSpeakerOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSpeakerOutActionPerformed
         String talkback = this.jTLenSalida.getText();
-        speaker(talkback);
+        if (!voiceListener.isSpeaking()) {
+            this.jBSpeakerOut.setIcon(new ImageIcon(getClass().getResource("/img/pause32.png")));
+            speaker(talkback);
+        } else {
+            this.jBSpeakerOut.setIcon(new ImageIcon(getClass().getResource("/img/speaker32.png")));
+            stopSpeaker();
+        }
     }//GEN-LAST:event_jBSpeakerOutActionPerformed
 
+    private boolean micState = true;
+
     private void jBMicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMicActionPerformed
-        if (flag) {
-            this.jBMic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mic32.png")));
-            //Inicia el reconocimiento de voz
-            Thread voiceThread = new Thread(() -> voiceListener.startListening(this.jTALenEntrada));
-            voiceThread.start();
-            flag = false;
+        if (micState) {
+            // Crea un nuevo hilo para manejar la espera
+            new Thread(() -> {
+                try {
+                    // Espera 6 segundos (6000 milisegundos)
+                    Thread.sleep(6000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                // Actualiza el icono y comienza el reconocimiento de voz en el hilo principal
+                SwingUtilities.invokeLater(() -> {
+                    this.jBMic.setIcon(new ImageIcon(getClass().getResource("/img/nomic32.png")));
+                    // Inicia el reconocimiento de voz
+                    Thread voiceThread = new Thread(() -> voiceListener.startListening(this.jTALenEntrada));
+                    voiceThread.start();
+                    micState = false;
+                });
+            }).start();
         } else {
-            this.jBMic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nomic32.png")));
+            this.jBMic.setIcon(new ImageIcon(getClass().getResource("/img/mic32.png")));
             //Detiene el reconocimiento de voz
-            if (voiceListener != null) {
-                voiceListener.stopListening();
-            }
-            flag = true;
+            voiceListener.stopListening();
+            micState = true;
         }
 
     }//GEN-LAST:event_jBMicActionPerformed
