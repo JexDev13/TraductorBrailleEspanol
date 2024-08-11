@@ -7,7 +7,7 @@ import java.util.Map;
  * Dictionary es un diccionario de equivalencias entre el abecedario español y las claves braille y viceversa.
  * 
  * @since 2.0
- * @version 2.0
+ * @version 3.0
  * @author SoftTech
  */
 public class Dictionary {
@@ -72,6 +72,10 @@ public class Dictionary {
         brailleMap.put("2356", "=");
         brailleMap.put("256", "/");
         brailleMap.put("3456", "#");
+        brailleMap.put("1246", "$");
+        brailleMap.put("146", "%");
+        brailleMap.put("12346", "&");
+        brailleMap.put("5", "@");
         brailleMap.put("3456 1", "1");
         brailleMap.put("3456 12", "2");
         brailleMap.put("3456 14", "3");
@@ -124,6 +128,10 @@ public class Dictionary {
         brailleMirrorMap.put('⠣','⠜'); 
         brailleMirrorMap.put('⠄','⠠'); 
         brailleMirrorMap.put('⠢','⠔'); 
+        brailleMirrorMap.put('⠫', '⠝');
+        brailleMirrorMap.put('⠩', '⠍');
+        brailleMirrorMap.put('⠯', '⠽');
+        brailleMirrorMap.put('⠐', '⠂'); 
         
         createUppercaseAlphabet();
         createReverseMap();
