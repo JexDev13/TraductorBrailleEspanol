@@ -427,7 +427,7 @@ public class JFTranslator extends javax.swing.JFrame {
      * Activa/desactiva el modo mayúsculas.
      */
     private void upperCaseSelect() {
-        if(firstTime && isUpperCaseMode && this.jRBMayus.isSelected()){
+        if (firstTime && isUpperCaseMode && this.jRBMayus.isSelected()) {
             this.jRBNinguno.doClick();
         }
         isUpperCaseMode = !isUpperCaseMode;
@@ -441,7 +441,7 @@ public class JFTranslator extends javax.swing.JFrame {
      * Activa/desactiva el modo números.
      */
     private void numberCaseSelect() {
-        if(!firstTime && isNumberMode && this.jRBNum.isSelected()){
+        if (!firstTime && isNumberMode && this.jRBNum.isSelected()) {
             this.jRBNinguno.doClick();
         }
         isNumberMode = !isNumberMode;
@@ -1330,8 +1330,13 @@ public class JFTranslator extends javax.swing.JFrame {
     private void jBSpeakerInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSpeakerInActionPerformed
         String talkback = this.jTALenEntrada.getText();
         if (!voiceListener.isSpeaking()) {
-            this.jBSpeakerIn.setIcon(new ImageIcon(getClass().getResource("/img/pause32.png")));
             speaker(talkback);
+            new Thread(() -> {
+                while (voiceListener.isSpeaking()) {
+                    this.jBSpeakerIn.setIcon(new ImageIcon(getClass().getResource("/img/pause32.png")));
+                }
+                this.jBSpeakerIn.setIcon(new ImageIcon(getClass().getResource("/img/speaker32.png")));
+            }).start();
         } else {
             this.jBSpeakerIn.setIcon(new ImageIcon(getClass().getResource("/img/speaker32.png")));
             stopSpeaker();
@@ -1339,48 +1344,42 @@ public class JFTranslator extends javax.swing.JFrame {
     }//GEN-LAST:event_jBSpeakerInActionPerformed
 
     private void jBSpeakerOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSpeakerOutActionPerformed
-        String talkback = this.jTLenSalida.getText();
+        String talkback = this.jTALenEntrada.getText();
         if (!voiceListener.isSpeaking()) {
-            this.jBSpeakerOut.setIcon(new ImageIcon(getClass().getResource("/img/pause32.png")));
-            speaker(talkback);
+            int result = voiceListener.speak(talkback);
+            new Thread(() -> {
+                while (voiceListener.isSpeaking()) {
+                    this.jBSpeakerOut.setIcon(new ImageIcon(getClass().getResource("/img/pause32.png")));
+                }
+                this.jBSpeakerOut.setIcon(new ImageIcon(getClass().getResource("/img/speaker32.png")));
+            }).start();
         } else {
             this.jBSpeakerOut.setIcon(new ImageIcon(getClass().getResource("/img/speaker32.png")));
             stopSpeaker();
         }
     }//GEN-LAST:event_jBSpeakerOutActionPerformed
 
-    private boolean micState = true;
-
     private void jBMicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMicActionPerformed
-        if (micState) {
-            // Crea un nuevo hilo para manejar la espera
+        if (!voiceListener.isListening()) {
+            voiceListener.startListening(this.jTALenEntrada);
             new Thread(() -> {
                 try {
-                    // Espera 6 segundos (6000 milisegundos)
-                    Thread.sleep(6000);
+                    Thread.sleep(2000);
+                    while (voiceListener.isListening()) {
+                        this.jBMic.setIcon(new ImageIcon(getClass().getResource("/img/nomic32.png")));
+                    }
+                    this.jBMic.setIcon(new ImageIcon(getClass().getResource("/img/mic32.png")));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                // Actualiza el icono y comienza el reconocimiento de voz en el hilo principal
-                SwingUtilities.invokeLater(() -> {
-                    this.jBMic.setIcon(new ImageIcon(getClass().getResource("/img/nomic32.png")));
-                    // Inicia el reconocimiento de voz
-                    Thread voiceThread = new Thread(() -> voiceListener.startListening(this.jTALenEntrada));
-                    voiceThread.start();
-                    micState = false;
-                });
             }).start();
         } else {
             this.jBMic.setIcon(new ImageIcon(getClass().getResource("/img/mic32.png")));
-            //Detiene el reconocimiento de voz
             voiceListener.stopListening();
-            micState = true;
         }
-
     }//GEN-LAST:event_jBMicActionPerformed
 
     private void jBImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImprimirActionPerformed
-        // TODO add your handling code here:
         if (jTLenSalida.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Error al imprimir: " + "No existe texto traducido para imprimir", "Error de Impresión", JOptionPane.ERROR_MESSAGE);
             return;

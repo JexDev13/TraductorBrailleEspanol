@@ -27,8 +27,12 @@ public class VoiceService {
      * @param texto JTextArea donde se añadirá el texto reconocido.
      */
     public void startListening(JTextArea texto) {
+        stopListening();  // Asegúrate de detener cualquier proceso anterior antes de iniciar uno nuevo.
         listening = true;
-        executePythonScript("src\\main\\java\\com\\softtech\\traductorbraille\\python\\voiceToText.py", texto);
+        new Thread(() -> {
+            executePythonScript("src\\main\\java\\com\\softtech\\traductorbraille\\python\\voiceToText.py", texto);
+            listening = false;
+        }).start();
     }
 
     /**
@@ -45,11 +49,16 @@ public class VoiceService {
      * Convierte el texto proporcionado a voz.
      *
      * @param texto El texto que se convertirá a voz.
+     * @return Un valor entero 1 si el proceso ha iniciado correctamente, 0 cuando finaliza.
      */
-    public void speak(String texto) {
+    public int speak(String texto) {
         stopSpeaking();  // Asegúrate de detener cualquier proceso anterior antes de iniciar uno nuevo.
         speaking = true;
-        executePythonScript("src\\main\\java\\com\\softtech\\traductorbraille\\python\\textToVoice.py \"" + texto + "\"", null);
+        new Thread(() -> {
+            executePythonScript("src\\main\\java\\com\\softtech\\traductorbraille\\python\\textToVoice.py \"" + texto + "\"", null);
+            speaking = false;
+        }).start();
+        return 1;
     }
 
     /**
@@ -64,6 +73,10 @@ public class VoiceService {
 
     public boolean isSpeaking() {
         return speaking;
+    }
+
+    public boolean isListening() {
+        return listening;
     }
 
     /**
@@ -89,8 +102,12 @@ public class VoiceService {
                         SwingUtilities.invokeLater(() -> outputArea.append(recognizedText + "\n"));
                     }
                 }
+
+                // Esperar a que el proceso termine
+                process.waitFor();
             }
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
