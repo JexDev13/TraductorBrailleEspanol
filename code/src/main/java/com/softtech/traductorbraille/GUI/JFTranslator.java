@@ -12,7 +12,6 @@ import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -23,7 +22,7 @@ import javax.swing.SwingUtilities;
  * traducciones de español-braille y braille-español.
  *
  * @since 1.0
- * @version 2.0
+ * @version 3.0
  * @author SoftTech
  */
 public class JFTranslator extends javax.swing.JFrame {
@@ -83,6 +82,7 @@ public class JFTranslator extends javax.swing.JFrame {
         currentBrailleCell = new BrailleCell();
         braillePanel.add(currentBrailleCell);
         voiceListener = new VoiceService();
+        this.jRBNinguno.setSelected(true);
     }
 
     /**
@@ -217,7 +217,8 @@ public class JFTranslator extends javax.swing.JFrame {
 
         char lastChar = text.charAt(text.length() - 1);
         if (!Character.isDigit(lastChar) && lastChar != '.' && lastChar != ',') {
-            jCBNumeros.setSelected(false);
+            //jCBNumeros.setSelected(false);
+            this.jRBNum.setSelected(false);
         }
     }
 
@@ -426,6 +427,9 @@ public class JFTranslator extends javax.swing.JFrame {
      * Activa/desactiva el modo mayúsculas.
      */
     private void upperCaseSelect() {
+        if(firstTime && isUpperCaseMode && this.jRBMayus.isSelected()){
+            this.jRBNinguno.doClick();
+        }
         isUpperCaseMode = !isUpperCaseMode;
         isNumberMode = false;
         firstTime = true;
@@ -437,8 +441,12 @@ public class JFTranslator extends javax.swing.JFrame {
      * Activa/desactiva el modo números.
      */
     private void numberCaseSelect() {
+        if(!firstTime && isNumberMode && this.jRBNum.isSelected()){
+            this.jRBNinguno.doClick();
+        }
         isNumberMode = !isNumberMode;
         isUpperCaseMode = false;
+        firstTime = true;
         updateBraillePanelLayout();
         requestFocusInWindow();
     }
@@ -521,6 +529,7 @@ public class JFTranslator extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPArchivo = new javax.swing.JPanel();
         jBClose = new javax.swing.JButton();
         jBDispose = new javax.swing.JButton();
@@ -550,12 +559,13 @@ public class JFTranslator extends javax.swing.JFrame {
         jBBorrar = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         JPBrailleMenu = new javax.swing.JPanel();
-        jTextArea3 = new javax.swing.JTextArea();
-        jCBMayusculas = new javax.swing.JCheckBox();
-        jCBNumeros = new javax.swing.JCheckBox();
         jLTitulo4 = new javax.swing.JLabel();
         jPCuadratin2 = new javax.swing.JPanel();
         braillePanel = new javax.swing.JPanel();
+        jRBMayus = new javax.swing.JRadioButton();
+        jRBNum = new javax.swing.JRadioButton();
+        jRBNinguno = new javax.swing.JRadioButton();
+        jLTitulo5 = new javax.swing.JLabel();
         jPTraduccion = new javax.swing.JPanel();
         jPLenEntrada = new javax.swing.JPanel();
         jLLenEntrada = new javax.swing.JLabel();
@@ -746,28 +756,29 @@ public class JFTranslator extends javax.swing.JFrame {
             .addGroup(jPTraductorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPTraductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLTitulo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPTraductorLayout.createSequentialGroup()
-                        .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())
                     .addGroup(jPTraductorLayout.createSequentialGroup()
                         .addComponent(jLEspañolEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBIntercambio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLBrailleEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE))))
+                        .addComponent(jLBrailleEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE))
+                    .addGroup(jPTraductorLayout.createSequentialGroup()
+                        .addGroup(jPTraductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jLTitulo2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPTraductorLayout.setVerticalGroup(
             jPTraductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPTraductorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPTraductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLBrailleEntrada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLEspañolEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBIntercambio))
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(jLTitulo2)
                 .addContainerGap())
         );
@@ -866,9 +877,9 @@ public class JFTranslator extends javax.swing.JFrame {
                 .addGroup(jPEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBoxNegrita)
                     .addComponent(jCheckBoxCursiva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
@@ -908,10 +919,9 @@ public class JFTranslator extends javax.swing.JFrame {
                 .addGroup(JPHerramientasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBTraducir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(JPHerramientasLayout.createSequentialGroup()
-                        .addGroup(JPHerramientasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jBBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLTitulo3, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jBBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLTitulo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         JPHerramientasLayout.setVerticalGroup(
@@ -932,38 +942,8 @@ public class JFTranslator extends javax.swing.JFrame {
 
         JPBrailleMenu.setBackground(new java.awt.Color(153, 153, 153));
 
-        jTextArea3.setEditable(false);
-        jTextArea3.setColumns(20);
-        jTextArea3.setForeground(new java.awt.Color(204, 204, 204));
-        jTextArea3.setRows(5);
-        jTextArea3.setText("Atajos");
-        jTextArea3.setWrapStyleWord(true);
-        jTextArea3.setAutoscrolls(false);
-        jTextArea3.setBorder(null);
-        jTextArea3.setFocusable(false);
-        jTextArea3.setOpaque(false);
-
-        jCBMayusculas.setBackground(new java.awt.Color(153, 153, 153));
-        jCBMayusculas.setForeground(new java.awt.Color(255, 255, 255));
-        jCBMayusculas.setText("Mayúsculas");
-        jCBMayusculas.setOpaque(true);
-        jCBMayusculas.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCBMayusculasItemStateChanged(evt);
-            }
-        });
-
-        jCBNumeros.setBackground(new java.awt.Color(153, 153, 153));
-        jCBNumeros.setForeground(new java.awt.Color(255, 255, 255));
-        jCBNumeros.setText("Números ");
-        jCBNumeros.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCBNumerosItemStateChanged(evt);
-            }
-        });
-
         jLTitulo4.setForeground(new java.awt.Color(255, 255, 255));
-        jLTitulo4.setText("           Cuadratín");
+        jLTitulo4.setText("Cuadratín");
         jLTitulo4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jPCuadratin2.setBackground(new java.awt.Color(153, 153, 153));
@@ -1006,36 +986,77 @@ public class JFTranslator extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        buttonGroup1.add(jRBMayus);
+        jRBMayus.setForeground(new java.awt.Color(255, 255, 255));
+        jRBMayus.setText("Mayúsculas");
+        jRBMayus.setContentAreaFilled(false);
+        jRBMayus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRBMayusMouseClicked(evt);
+            }
+        });
+
+        buttonGroup1.add(jRBNum);
+        jRBNum.setForeground(new java.awt.Color(255, 255, 255));
+        jRBNum.setText("Números");
+        jRBNum.setContentAreaFilled(false);
+        jRBNum.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRBNumMouseClicked(evt);
+            }
+        });
+
+        buttonGroup1.add(jRBNinguno);
+        jRBNinguno.setForeground(new java.awt.Color(255, 255, 255));
+        jRBNinguno.setText("Ninguno");
+        jRBNinguno.setContentAreaFilled(false);
+        jRBNinguno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRBNingunoMouseClicked(evt);
+            }
+        });
+
+        jLTitulo5.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLTitulo5.setForeground(new java.awt.Color(255, 255, 255));
+        jLTitulo5.setText("Atajos");
+        jLTitulo5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout JPBrailleMenuLayout = new javax.swing.GroupLayout(JPBrailleMenu);
         JPBrailleMenu.setLayout(JPBrailleMenuLayout);
         JPBrailleMenuLayout.setHorizontalGroup(
             JPBrailleMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPBrailleMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(JPBrailleMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jCBMayusculas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextArea3, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                    .addComponent(jCBNumeros, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                    .addComponent(jLTitulo4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(JPBrailleMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jRBNum, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jRBNinguno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLTitulo4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jRBMayus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLTitulo5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPCuadratin2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addContainerGap())
         );
         JPBrailleMenuLayout.setVerticalGroup(
             JPBrailleMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPBrailleMenuLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(JPBrailleMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPBrailleMenuLayout.createSequentialGroup()
-                        .addComponent(jTextArea3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCBMayusculas, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(jPCuadratin2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(JPBrailleMenuLayout.createSequentialGroup()
+                        .addGap(0, 8, Short.MAX_VALUE)
+                        .addComponent(jLTitulo5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCBNumeros, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRBMayus)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLTitulo4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPCuadratin2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jRBNum)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRBNinguno)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLTitulo4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPMenuLayout = new javax.swing.GroupLayout(jPMenu);
@@ -1056,32 +1077,29 @@ public class JFTranslator extends javax.swing.JFrame {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JPBrailleMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(463, Short.MAX_VALUE))
+                .addContainerGap(513, Short.MAX_VALUE))
         );
         jPMenuLayout.setVerticalGroup(
             jPMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPMenuLayout.createSequentialGroup()
-                .addGroup(jPMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(JPBrailleMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(JPBrailleMenu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPTraductor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPEdicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JPHerramientas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(117, 117, 117))
-            .addGroup(jPMenuLayout.createSequentialGroup()
-                .addGroup(jPMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPMenuLayout.createSequentialGroup()
+                    .addComponent(jPEdicion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPMenuLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPMenuLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPMenuLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPMenuLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPMenuLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JPHerramientas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1350, 120));
+        getContentPane().add(jPMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1350, 130));
 
         jPLenEntrada.setPreferredSize(new java.awt.Dimension(663, 115));
 
@@ -1301,29 +1319,6 @@ public class JFTranslator extends javax.swing.JFrame {
         resetFormattingOptions();
     }//GEN-LAST:event_jBIntercambioActionPerformed
 
-    private void jCBMayusculasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBMayusculasItemStateChanged
-        requestFocusInWindow();
-        if (jCBMayusculas.isSelected()) {
-            upperCaseSelect();
-            this.jCBNumeros.setSelected(false);
-        } else {
-            isUpperCaseMode = false;
-            updateBraillePanelLayout();
-        }
-    }//GEN-LAST:event_jCBMayusculasItemStateChanged
-
-    private void jCBNumerosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBNumerosItemStateChanged
-        requestFocusInWindow();
-        if (jCBNumeros.isSelected()) {
-            numberCaseSelect();
-            this.jCBMayusculas.setSelected(false);
-        } else {
-            isNumberMode = false;
-            firstTime = true;
-            updateBraillePanelLayout();
-        }
-    }//GEN-LAST:event_jCBNumerosItemStateChanged
-
     private void jPCuadratin2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPCuadratin2MouseClicked
         handleFocusGainedOnBraille();
     }//GEN-LAST:event_jPCuadratin2MouseClicked
@@ -1429,10 +1424,26 @@ public class JFTranslator extends javax.swing.JFrame {
         translateText();
     }//GEN-LAST:event_jTALenEntradaKeyReleased
 
+    private void jRBMayusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRBMayusMouseClicked
+        upperCaseSelect();
+    }//GEN-LAST:event_jRBMayusMouseClicked
+
+    private void jRBNumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRBNumMouseClicked
+        numberCaseSelect();
+    }//GEN-LAST:event_jRBNumMouseClicked
+
+    private void jRBNingunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRBNingunoMouseClicked
+        isNumberMode = false;
+        firstTime = true;
+        isUpperCaseMode = false;
+        updateBraillePanelLayout();
+    }//GEN-LAST:event_jRBNingunoMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPBrailleMenu;
     private javax.swing.JPanel JPHerramientas;
     private javax.swing.JPanel braillePanel;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBBorrar;
     private javax.swing.JButton jBClose;
     private javax.swing.JButton jBDispose;
@@ -1443,8 +1454,6 @@ public class JFTranslator extends javax.swing.JFrame {
     private javax.swing.JButton jBSpeakerIn;
     private javax.swing.JButton jBSpeakerOut;
     private javax.swing.JButton jBTraducir;
-    private javax.swing.JCheckBox jCBMayusculas;
-    private javax.swing.JCheckBox jCBNumeros;
     private javax.swing.JCheckBox jCheckBoxCursiva;
     private javax.swing.JCheckBox jCheckBoxNegrita;
     private javax.swing.JComboBox<String> jComboBoxTamañoLetra;
@@ -1459,6 +1468,7 @@ public class JFTranslator extends javax.swing.JFrame {
     private javax.swing.JLabel jLTitulo2;
     private javax.swing.JLabel jLTitulo3;
     private javax.swing.JLabel jLTitulo4;
+    private javax.swing.JLabel jLTitulo5;
     private javax.swing.JPanel jPArchivo;
     private javax.swing.JPanel jPCuadratin2;
     private javax.swing.JPanel jPEdicion;
@@ -1469,6 +1479,9 @@ public class JFTranslator extends javax.swing.JFrame {
     private javax.swing.JPanel jPSpanishOut;
     private javax.swing.JPanel jPTraduccion;
     private javax.swing.JPanel jPTraductor;
+    private javax.swing.JRadioButton jRBMayus;
+    private javax.swing.JRadioButton jRBNinguno;
+    private javax.swing.JRadioButton jRBNum;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
@@ -1478,6 +1491,5 @@ public class JFTranslator extends javax.swing.JFrame {
     private javax.swing.JTextArea jTATitulo;
     private javax.swing.JTextArea jTLenSalida;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea3;
     // End of variables declaration//GEN-END:variables
 }
