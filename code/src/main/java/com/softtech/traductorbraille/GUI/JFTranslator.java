@@ -598,10 +598,10 @@ public class JFTranslator extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPArchivo.setBackground(new java.awt.Color(102, 102, 102));
+        jPArchivo.setBackground(new java.awt.Color(112, 128, 144));
         jPArchivo.setPreferredSize(new java.awt.Dimension(1341, 35));
 
-        jBClose.setBackground(new java.awt.Color(102, 102, 102));
+        jBClose.setBackground(new java.awt.Color(112, 128, 144));
         jBClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/close32.png"))); // NOI18N
         jBClose.setBorderPainted(false);
         jBClose.setFocusable(false);
@@ -613,7 +613,7 @@ public class JFTranslator extends javax.swing.JFrame {
             }
         });
 
-        jBDispose.setBackground(new java.awt.Color(102, 102, 102));
+        jBDispose.setBackground(new java.awt.Color(112, 128, 144));
         jBDispose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dispose32.png"))); // NOI18N
         jBDispose.setBorderPainted(false);
         jBDispose.setFocusable(false);
@@ -625,7 +625,7 @@ public class JFTranslator extends javax.swing.JFrame {
             }
         });
 
-        jBExportar.setBackground(new java.awt.Color(102, 102, 102));
+        jBExportar.setBackground(new java.awt.Color(112, 128, 144));
         jBExportar.setForeground(new java.awt.Color(255, 255, 255));
         jBExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/export24.png"))); // NOI18N
         jBExportar.setText(" Exportar");
@@ -641,7 +641,7 @@ public class JFTranslator extends javax.swing.JFrame {
             }
         });
 
-        jBImprimir.setBackground(new java.awt.Color(102, 102, 102));
+        jBImprimir.setBackground(new java.awt.Color(112, 128, 144));
         jBImprimir.setForeground(new java.awt.Color(255, 255, 255));
         jBImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/print24.png"))); // NOI18N
         jBImprimir.setText(" Imprimir");
@@ -707,9 +707,9 @@ public class JFTranslator extends javax.swing.JFrame {
 
         getContentPane().add(jPArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 40));
 
-        jPMenu.setBackground(new java.awt.Color(153, 153, 153));
+        jPMenu.setBackground(new java.awt.Color(119, 136, 153));
 
-        jPTraductor.setBackground(new java.awt.Color(153, 153, 153));
+        jPTraductor.setBackground(new java.awt.Color(119, 136, 153));
 
         jLTitulo2.setForeground(new java.awt.Color(255, 255, 255));
         jLTitulo2.setText("            Seleccionar idioma");
@@ -740,7 +740,7 @@ public class JFTranslator extends javax.swing.JFrame {
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
-        jTextArea1.setForeground(new java.awt.Color(204, 204, 204));
+        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea1.setRows(5);
         jTextArea1.setText("Traducciendo de ");
         jTextArea1.setWrapStyleWord(true);
@@ -787,12 +787,13 @@ public class JFTranslator extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jPEdicion.setBackground(new java.awt.Color(153, 153, 153));
+        jPEdicion.setBackground(new java.awt.Color(119, 136, 153));
 
         jLTamFuente.setBackground(new java.awt.Color(255, 255, 255));
         jLTamFuente.setForeground(new java.awt.Color(255, 255, 255));
         jLTamFuente.setText("Tamaño Fuente:");
 
+        jComboBoxTamañoLetra.setBackground(new java.awt.Color(220, 220, 220));
         jComboBoxTamañoLetra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10", "12", "14", "16", "18", "20", "22", "24", "26", "28", "30" }));
         jComboBoxTamañoLetra.setFocusable(false);
         jComboBoxTamañoLetra.setOpaque(true);
@@ -816,7 +817,7 @@ public class JFTranslator extends javax.swing.JFrame {
             }
         });
 
-        jCheckBoxCursiva.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBoxCursiva.setBackground(new java.awt.Color(220, 220, 220));
         jCheckBoxCursiva.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBoxCursiva.setText("Cursiva");
         jCheckBoxCursiva.setContentAreaFilled(false);
@@ -827,7 +828,7 @@ public class JFTranslator extends javax.swing.JFrame {
             }
         });
 
-        jCheckBoxNegrita.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBoxNegrita.setBackground(new java.awt.Color(220, 220, 220));
         jCheckBoxNegrita.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBoxNegrita.setText("Negrita");
         jCheckBoxNegrita.setContentAreaFilled(false);
@@ -886,13 +887,14 @@ public class JFTranslator extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        JPHerramientas.setBackground(new java.awt.Color(153, 153, 153));
+        JPHerramientas.setBackground(new java.awt.Color(119, 136, 153));
 
         jLTitulo3.setForeground(new java.awt.Color(255, 255, 255));
         jLTitulo3.setText("        Herramientas");
         jLTitulo3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jBTraducir.setBackground(new java.awt.Color(204, 204, 204));
+        jBTraducir.setBackground(new java.awt.Color(112, 128, 144));
+        jBTraducir.setForeground(new java.awt.Color(255, 255, 255));
         jBTraducir.setText("Traducir");
         jBTraducir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jBTraducir.addActionListener(new java.awt.event.ActionListener() {
@@ -901,7 +903,8 @@ public class JFTranslator extends javax.swing.JFrame {
             }
         });
 
-        jBBorrar.setBackground(new java.awt.Color(204, 204, 204));
+        jBBorrar.setBackground(new java.awt.Color(112, 128, 144));
+        jBBorrar.setForeground(new java.awt.Color(255, 255, 255));
         jBBorrar.setText("Borrar");
         jBBorrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jBBorrar.setPreferredSize(new java.awt.Dimension(34, 24));
@@ -940,13 +943,13 @@ public class JFTranslator extends javax.swing.JFrame {
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        JPBrailleMenu.setBackground(new java.awt.Color(153, 153, 153));
+        JPBrailleMenu.setBackground(new java.awt.Color(119, 136, 153));
 
         jLTitulo4.setForeground(new java.awt.Color(255, 255, 255));
         jLTitulo4.setText("Cuadratín");
         jLTitulo4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jPCuadratin2.setBackground(new java.awt.Color(153, 153, 153));
+        jPCuadratin2.setBackground(new java.awt.Color(119, 136, 153));
         jPCuadratin2.setPreferredSize(new java.awt.Dimension(66, 88));
         jPCuadratin2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1016,7 +1019,6 @@ public class JFTranslator extends javax.swing.JFrame {
             }
         });
 
-        jLTitulo5.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLTitulo5.setForeground(new java.awt.Color(255, 255, 255));
         jLTitulo5.setText("Atajos");
         jLTitulo5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -1077,7 +1079,7 @@ public class JFTranslator extends javax.swing.JFrame {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JPBrailleMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(513, Short.MAX_VALUE))
+                .addContainerGap(515, Short.MAX_VALUE))
         );
         jPMenuLayout.setVerticalGroup(
             jPMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1101,16 +1103,20 @@ public class JFTranslator extends javax.swing.JFrame {
 
         getContentPane().add(jPMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1350, 130));
 
+        jPTraduccion.setBackground(new java.awt.Color(245, 240, 250));
+
+        jPLenEntrada.setBackground(new java.awt.Color(245, 240, 250));
         jPLenEntrada.setPreferredSize(new java.awt.Dimension(663, 115));
 
         jLLenEntrada.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLLenEntrada.setForeground(new java.awt.Color(105, 105, 105));
         jLLenEntrada.setText("Español");
         jLLenEntrada.setPreferredSize(new java.awt.Dimension(545, 60));
 
         jPSpanishEntrance.setOpaque(false);
         jPSpanishEntrance.setPreferredSize(new java.awt.Dimension(90, 50));
 
-        jBMic.setBackground(new java.awt.Color(204, 204, 204));
+        jBMic.setBackground(new java.awt.Color(220, 220, 220));
         jBMic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mic32.png"))); // NOI18N
         jBMic.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jBMic.setPreferredSize(new java.awt.Dimension(32, 32));
@@ -1120,7 +1126,7 @@ public class JFTranslator extends javax.swing.JFrame {
             }
         });
 
-        jBSpeakerIn.setBackground(new java.awt.Color(204, 204, 204));
+        jBSpeakerIn.setBackground(new java.awt.Color(220, 220, 220));
         jBSpeakerIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/speaker32.png"))); // NOI18N
         jBSpeakerIn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jBSpeakerIn.setPreferredSize(new java.awt.Dimension(32, 32));
@@ -1187,16 +1193,18 @@ public class JFTranslator extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPLenSalida.setBackground(new java.awt.Color(245, 240, 250));
         jPLenSalida.setPreferredSize(new java.awt.Dimension(663, 115));
 
         jLLenSalida.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLLenSalida.setForeground(new java.awt.Color(105, 105, 105));
         jLLenSalida.setText("Braille");
         jLLenSalida.setPreferredSize(new java.awt.Dimension(545, 60));
 
         jPSpanishOut.setOpaque(false);
         jPSpanishOut.setPreferredSize(new java.awt.Dimension(90, 50));
 
-        jBSpeakerOut.setBackground(new java.awt.Color(204, 204, 204));
+        jBSpeakerOut.setBackground(new java.awt.Color(220, 220, 220));
         jBSpeakerOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/speaker32.png"))); // NOI18N
         jBSpeakerOut.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jBSpeakerOut.setPreferredSize(new java.awt.Dimension(32, 32));
