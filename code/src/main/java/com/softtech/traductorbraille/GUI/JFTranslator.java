@@ -536,6 +536,8 @@ public class JFTranslator extends javax.swing.JFrame {
         jBExportar = new javax.swing.JButton();
         jBImprimir = new javax.swing.JButton();
         jTATitulo = new javax.swing.JTextArea();
+        jLTitulo6 = new javax.swing.JLabel();
+        jCheckBoxThemeMode = new javax.swing.JCheckBox();
         jPMenu = new javax.swing.JPanel();
         jPTraductor = new javax.swing.JPanel();
         jLTitulo2 = new javax.swing.JLabel();
@@ -670,6 +672,17 @@ public class JFTranslator extends javax.swing.JFrame {
         jTATitulo.setFocusable(false);
         jTATitulo.setOpaque(false);
 
+        jLTitulo6.setForeground(new java.awt.Color(255, 255, 255));
+        jLTitulo6.setText("Modo Oscuro");
+        jLTitulo6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jCheckBoxThemeMode.setBackground(new java.awt.Color(112, 128, 144));
+        jCheckBoxThemeMode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxThemeModeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPArchivoLayout = new javax.swing.GroupLayout(jPArchivo);
         jPArchivo.setLayout(jPArchivoLayout);
         jPArchivoLayout.setHorizontalGroup(
@@ -679,7 +692,11 @@ public class JFTranslator extends javax.swing.JFrame {
                 .addComponent(jBExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 417, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLTitulo6)
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBoxThemeMode)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
                 .addComponent(jTATitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(224, 224, 224)
                 .addComponent(jBDispose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -691,14 +708,20 @@ public class JFTranslator extends javax.swing.JFrame {
             jPArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPArchivoLayout.createSequentialGroup()
                 .addGroup(jPArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPArchivoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTATitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addComponent(jBClose, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBDispose, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBImprimir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBExportar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBExportar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPArchivoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTATitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPArchivoLayout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addGroup(jPArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxThemeMode)
+                    .addComponent(jLTitulo6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jBExportar.getAccessibleContext().setAccessibleName("");
@@ -1094,10 +1117,10 @@ public class JFTranslator extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPMenuLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JPHerramientas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPMenuLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(JPHerramientas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1446,6 +1469,82 @@ public class JFTranslator extends javax.swing.JFrame {
         updateBraillePanelLayout();
     }//GEN-LAST:event_jRBNingunoMouseClicked
 
+    private void jCheckBoxThemeModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxThemeModeActionPerformed
+        if (jCheckBoxThemeMode.isSelected()) {
+            //Navigator
+            jPArchivo.setBackground(new Color(33, 33, 33));
+            jBExportar.setBackground(new Color(33, 33, 33));
+            jBImprimir.setBackground(new Color(33, 33, 33));
+            jBDispose.setBackground(new Color(33, 33, 33));
+            jBClose.setBackground(new Color(33, 33, 33));
+            jCheckBoxThemeMode.setBackground(new Color(33, 33, 33));
+            //Menu
+            jBTraducir.setBackground(new Color(33, 33, 33));
+            jBBorrar.setBackground(new Color(33, 33, 33));
+            jPMenu.setBackground(new Color(48, 48, 48));
+            jPTraductor.setBackground(new Color(48, 48, 48));
+            jPEdicion.setBackground(new Color(48, 48, 48));
+            JPHerramientas.setBackground(new Color(48, 48, 48));
+            JPBrailleMenu.setBackground(new Color(48, 48, 48));
+            jPCuadratin2.setBackground(new Color(48, 48, 48));
+            jComboBoxTamañoLetra.setBackground(new Color(48, 48, 48));
+            
+            jBTraducir.setForeground(Color.WHITE);
+            jBBorrar.setForeground(Color.WHITE);
+            jComboBoxTamañoLetra.setForeground(Color.WHITE);
+            //Text
+            jPTraduccion.setBackground(new Color(20, 20, 20));
+            jPLenEntrada.setBackground(new Color(20, 20, 20));
+            jPLenSalida.setBackground(new Color(20, 20, 20));
+            jPSpanishEntrance.setBackground(new Color(20, 20, 20));
+            jPSpanishOut.setBackground(new Color(20, 20, 20));
+            jTALenEntrada.setBackground(new Color(48, 48, 48));
+            jTLenSalida.setBackground(new Color(48, 48, 48));
+            
+            jLLenEntrada.setForeground(Color.WHITE);
+            jLLenSalida.setForeground(Color.WHITE);
+            jTALenEntrada.setForeground(Color.WHITE);
+            jTLenSalida.setForeground(Color.WHITE);
+
+            
+        } else {
+            //Navigator
+            jPArchivo.setBackground(new Color(112,128,144));
+            jBExportar.setBackground(new Color(112,128,144));
+            jBImprimir.setBackground(new Color(112,128,144));
+            jBDispose.setBackground(new Color(112,128,144));
+            jBClose.setBackground(new Color(112,128,144));
+            jCheckBoxThemeMode.setBackground(new Color(112,128,144));
+            //Menu
+            jBTraducir.setBackground(new Color(119,136,153));
+            jBBorrar.setBackground(new Color(119,136,153));
+            jPMenu.setBackground(new Color(119,136,153));
+            jPTraductor.setBackground(new Color(119,136,153));
+            jPEdicion.setBackground(new Color(119,136,153));
+            JPHerramientas.setBackground(new Color(119,136,153));
+            JPBrailleMenu.setBackground(new Color(119,136,153));
+            jPCuadratin2.setBackground(new Color(119,136,153));
+            jComboBoxTamañoLetra.setBackground(new Color(220, 220, 220));
+            
+            jBTraducir.setForeground(Color.WHITE);
+            jBBorrar.setForeground(Color.WHITE);
+            jComboBoxTamañoLetra.setForeground(Color.BLACK);
+            //Text
+            jPTraduccion.setBackground(new Color(245,240,250));
+            jPLenEntrada.setBackground(new Color(245,240,250));
+            jPLenSalida.setBackground(new Color(245,240,250));
+            jPSpanishEntrance.setBackground(new Color(255, 255, 255));
+            jPSpanishOut.setBackground(new Color(255, 255, 255));
+            jTALenEntrada.setBackground(new Color(255, 255, 255));
+            jTLenSalida.setBackground(new Color(255, 255, 255));
+            
+            jLLenEntrada.setForeground(new Color(105, 105, 105));
+            jLLenSalida.setForeground(new Color(105, 105, 105));
+            jTALenEntrada.setForeground(Color.BLACK);
+            jTLenSalida.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jCheckBoxThemeModeActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPBrailleMenu;
     private javax.swing.JPanel JPHerramientas;
@@ -1463,6 +1562,7 @@ public class JFTranslator extends javax.swing.JFrame {
     private javax.swing.JButton jBTraducir;
     private javax.swing.JCheckBox jCheckBoxCursiva;
     private javax.swing.JCheckBox jCheckBoxNegrita;
+    private javax.swing.JCheckBox jCheckBoxThemeMode;
     private javax.swing.JComboBox<String> jComboBoxTamañoLetra;
     private javax.swing.JLabel jLBrailleEntrada;
     private javax.swing.JLabel jLColor;
@@ -1476,6 +1576,7 @@ public class JFTranslator extends javax.swing.JFrame {
     private javax.swing.JLabel jLTitulo3;
     private javax.swing.JLabel jLTitulo4;
     private javax.swing.JLabel jLTitulo5;
+    private javax.swing.JLabel jLTitulo6;
     private javax.swing.JPanel jPArchivo;
     private javax.swing.JPanel jPCuadratin2;
     private javax.swing.JPanel jPEdicion;
